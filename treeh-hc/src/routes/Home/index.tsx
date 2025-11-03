@@ -34,7 +34,7 @@ export default function Home() {
         <div className="bg-white shadow-2xl rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 xl:p-14 max-w-full sm:max-w-2xl md:max-w-3xl mx-auto text-center">
           
           <h3 className="text-[#2F6AD8] font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4">Seu Propósito</h3>
-          <div className="bg-[#7E7E7E] rounded-full p-4 sm:p-6 md:p-8 mb-6 sm:mb-8 md:mb-10">
+          <div className="bg-[#b1b1b1cf] rounded-full p-4 sm:p-6 md:p-8 mb-6 sm:mb-8 md:mb-10">
             <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed">
               A teleconsulta foi criada para democratizar o acesso à saúde, superar barreiras geográficas, reduzir custos e otimizar o acompanhamento de pacientes, especialmente em áreas remotas ou para pessoas com dificuldade de locomoção.
             </p>
