@@ -74,6 +74,19 @@ export default function Home() {
             />
           </a>
 
+          <a 
+            href="https://apps.apple.com/br/app/portal-do-paciente-hc/id1572694502" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="transition-transform transform hover:scale-105"
+          >
+            <img 
+              src={LogoApple} 
+              alt="Baixar na App Store" 
+              className="h-12 sm:h-14 md:h-16" 
+            />
+          </a>
+          
         </div>
       </section>
 
