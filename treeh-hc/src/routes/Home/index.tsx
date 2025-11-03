@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import LogoHC from '../../assets/logo_hc.svg';
 import LogoIMREA from '../../assets/logo_imrea.svg';
 import LogoApple from '../../assets/appStore.png';
@@ -5,8 +6,10 @@ import LogoPlay from '../../assets/googlePlay.png';
 
 
 export default function Home() {
+  const [showFaq, setShowFaq] = useState(false);
+
   return (
-    <main className="bg-[#EAEAEA] font-sans">
+    <main className="bg-[#EAEAEA] font-sans min-h-screen overflow-x-hidden"> {/* Adicionado overflow-x-hidden e min-h-screen */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-16 sm:py-20 md:py-24">
         <div className="max-w-3xl text-left">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 leading-tight">
@@ -17,8 +20,16 @@ export default function Home() {
           </p>
 
           <div className="flex flex-row items-center gap-6 mt-6">
-            <img src={LogoHC} alt="Logo Hospital das Clínicas" className="h-12 sm:h-14 md:h-16 lg:h-20"/>
-            <img src={LogoIMREA} alt="Logo IMREA" className="h-12 sm:h-14 md:h-16 lg:h-20"/>
+            <img 
+              src={LogoHC} 
+              alt="Logo Hospital das Clínicas" 
+              className="h-12 sm:h-14 md:h-16 lg:h-20"
+            />
+            <img 
+              src={LogoIMREA} 
+              alt="Logo IMREA" 
+              className="h-12 sm:h-14 md:h-16 lg:h-20"
+            />
           </div>
 
           <button className="mt-6 sm:mt-10 bg-[#2F6AD8] hover:brightness-90 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-transform transform hover:scale-105 text-base sm:text-lg md:text-xl">
@@ -47,9 +58,34 @@ export default function Home() {
             </p>
           </div>
 
-          <button className="w-full sm:w-auto mt-4 sm:mt-6 bg-[#2F6AD8] hover:brightness-90 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full font-semibold shadow-lg transition-transform transform hover:scale-105 text-sm sm:text-base md:text-lg lg:text-xl">
-            DÚVIDAS?
+          <button 
+            onClick={() => setShowFaq(!showFaq)}
+            className="w-full sm:w-auto mt-4 sm:mt-6 bg-[#2F6AD8] hover:brightness-90 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full font-semibold shadow-lg transition-transform transform hover:scale-105 text-sm sm:text-base md:text-lg lg:text-xl"
+          >
+            {showFaq ? 'FECHAR DÚVIDAS' : 'DÚVIDAS?'}
           </button>
+          
+          {showFaq && (
+            <div className="mt-6 sm:mt-8 md:mt-10 text-left p-4 sm:p-6 bg-gray-100 rounded-2xl">
+              <h4 className="font-bold text-lg sm:text-xl text-gray-800 mb-3">Perguntas Frequentes</h4>
+              
+              <div className="mb-3">
+                <p className="font-semibold text-gray-700">1. Como acesso a consulta?</p>
+                <p className="text-gray-600 text-sm sm:text-base">Você receberá um link por e-mail ou SMS no dia. Basta clicar nele no horário agendado e aguardar o médico na sala virtual.</p>
+              </div>
+              
+              <div className="mb-3">
+                <p className="font-semibold text-gray-700">2. Preciso baixar o aplicativo?</p>
+                <p className="text-gray-600 text-sm sm:text-base">Sim, a consulta ocorre de forma mais estável dentro do aplicativo "Portal do Paciente HC". Recomendamos que o baixe antes da consulta.</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-gray-700">3. A consulta é gravada?</p>
+                <p className="text-gray-600 text-sm sm:text-base">Não. Seguindo as normas de privacidade e sigilo médico, as teleconsultas não são gravadas.</p>
+              </div>
+            </div>
+          )}
+
         </div>
       </section>
       <section className="text-center py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 px-4 sm:px-6 md:px-8 lg:px-12">
@@ -70,7 +106,7 @@ export default function Home() {
             <img 
               src={LogoPlay} 
               alt="Disponível no Google Play" 
-              className="h-12 sm:h-14 md:h-16" 
+              className="h-12 sm:h-14 md:h-16 rounded-lg" 
             />
           </a>
 
@@ -83,7 +119,7 @@ export default function Home() {
             <img 
               src={LogoApple} 
               alt="Baixar na App Store" 
-              className="h-12 sm:h-14 md:h-16" 
+              className="h-12 sm:h-14 md:h-16 rounded-lg" 
             />
           </a>
           
