@@ -18,12 +18,12 @@ import Tutorial from './routes/Tutorial/index.tsx';
 import Login from './routes/Login/index.tsx';
 import Dashboard from './routes/Dashboard/index.tsx';
 import Pacientes from './routes/Pacientes/index.tsx';
-import ProtectedRoute from './components/ProtectedRoute.tsx'; // Importar Rota Protegida
+import ProtectedRoute from './components/Rotas/ProtectedRoute.tsx'; // Importar Rota Protegida
 
-// (Você precisará criar os componentes para Profissionais, Agendamentos, Consultas)
-// import Profissionais from './routes/Profissionais/index.tsx';
-// import Agendamentos from './routes/Agendamentos/index.tsx';
-// import Consultas from './routes/Consultas/index.tsx';
+// Importar os novos componentes de funcionalidade
+import Profissionais from './routes/Profissionais/index.tsx';
+import Agendamentos from './routes/Agendamentos/index.tsx';
+import Consultas from './routes/Consultas/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -45,9 +45,9 @@ const router = createBrowserRouter([
         children: [
           { path: "/dashboard", element: <Dashboard /> },
           { path: "/pacientes", element: <Pacientes /> },
-          // { path: "/profissionais", element: <Profissionais /> },
-          // { path: "/agendamentos", element: <Agendamentos /> },
-          // { path: "/consultas", element: <Consultas /> },
+          { path: "/profissionais", element: <Profissionais /> },
+          { path: "/agendamentos", element: <Agendamentos /> },
+          { path: "/consultas", element: <Consultas /> },
         ]
       }
     ]
@@ -56,7 +56,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* Envolver o RouterProvider com o AuthProvider */}
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>
