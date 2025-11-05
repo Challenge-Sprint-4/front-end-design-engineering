@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, ReactNode, useContext } from 'react';
+import { createContext, useState, useEffect, type ReactNode, useContext } from 'react';
 import api from '../services/api';
 
 // Interface para os dados do usuário que virão do backend
@@ -25,28 +25,55 @@ interface AuthProviderProps {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [usuario, setUsuario] = useState<Usuario | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [usuario, setUsuario] = useState<Usuario | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => { ... }, []);
+  useEffect(() => {
+    // Tenta carregar dados do usuário do localStorage ao iniciar
+    const storedUser = localStorage.getItem('@AppHC:usuario');
+    if (storedUser) {
+      setUsuario(JSON.parse(storedUser));
+      // Você pode adicionar a lógica do token aqui
+    }
+    setLoading(false);
+  }, []);
 
-  async function login(email: string, senha: string) {
-    try {
-      const response = await api.post('/login', { email, senha });
-      const usuarioLogado: Usuario = response.data;
+  async function login(email: string, senha: string) {
+    try {
+      const response = await api.post('/login', { email, senha });
+      const usuarioLogado: Usuario = response.data;
 
-      setUsuario(usuarioLogado);
-      localStorage.setItem('@AppHC:usuario', JSON.stringify(usuarioLogado));
+      setUsuario(usuarioLogado);
+      localStorage.setItem('@AppHC:usuario', JSON.stringify(usuarioLogado));
+      
+      // Configura o token no axios (se você implementar JWT)
+      // api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    } catch (error) {
-      console.error("Erro no login:", error);
-      throw new Error("Falha ao fazer login. Verifique suas credenciais.");
-    }
-  }
+    } catch (error) {
+      console.error("Erro no login:", error);
+      throw new Error("Falha ao fazer login. Verifique suas credenciais.");
+    }
+  }
 
-  return (
-    <AuthContext.Provider value={{ usuario, loading, login }}> {/* Add login */}
-      {children}
-    </AuthContext.Provider>
-  );
+  function logout() {
+    setUsuario(null);
+    localStorage.removeItem('@AppHC:usuario');
+    // Remove o token do axios
+    // delete api.defaults.headers.Authorization;
+  }
+
+  return (
+    <AuthContext.Provider value={{ usuario, loading, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+// Hook customizado
+export function useAuth(): AuthContextData {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth deve ser usado dentro de um AuthProvider');
+  }
+  return context;
 }
