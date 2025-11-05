@@ -1,80 +1,133 @@
-# 🏥 Portal do Paciente HC — Front-End Design Engineering (Sprint 03)
+# 🏥 Prontuário HC
 
-## 🎯 Objetivo
-Minimizar a taxa de desistência em teleconsultas do Hospital das Clínicas (HC) por meio de uma interface **acessível, responsiva e intuitiva**, desenvolvida com **React + Vite + TypeScript**. A aplicação inclui um tutorial passo a passo para acessar o Portal do Paciente HC, seção da equipe, FAQ, Home e link direto para download na Play Store.
-
----
-
-## 💡 Visão Geral
-Este projeto transforma as páginas da Sprint 02 em uma **Single Page Application (SPA)**, com foco em:
-- **Acessibilidade (WCAG)**: navegação por teclado, contraste adequado, labels claros;
-- **Usabilidade**: tutorial passo a passo e fluxos simplificados;
-- **Responsividade**: compatível com XS/SM/MD/LG/XL;
-- **Componentização e reutilização** em React + TypeScript;
-- **Validação de formulários** usando React Hook Form.
+Plataforma de gestão de saúde (Frontend) desenvolvida para a administração de um hospital ou clínica (HC). O sistema permite o gerenciamento de pacientes, profissionais, agendamentos e consultas, contando com um sistema de autenticação robusto para Pacientes e Profissionais.
 
 ---
 
-## 🧭 Páginas / Seções Principais
-- **Home** — Apresentação do projeto e benefícios para pacientes e profissionais.
-- **Tutorial: Acesso ao Portal do Paciente HC** — Guia passo a passo para:
-  1. Acessar o portal oficial do HC;
-  2. Criar conta / Fazer login;
-  3. Agendar teleconsulta;
-  4. Entrar na sala da consulta virtual;
-  5. Solução de problemas comuns (e.g., áudio, vídeo, conexão).
-- **Equipe** — Identificação dos integrantes (nome, RM e função).
-- **FAQ** — Perguntas frequentes sobre login, agendamento, compatibilidade e privacidade.
-- **Download (Play Store)** — Link direto para baixar o app na Play Store.
+## 🚀 Tecnologias Usadas
+
+### Frontend
+
+* **React** (Vite + TypeScript)
+* **React Router DOM** para gerenciamento de rotas
+* **React Context API** para gerenciamento de estado global (Autenticação)
+* **Axios** para chamadas de API
+* **Tailwind CSS** para estilização responsiva e componentização de UI
+* **ESLint** para padronização de código
+
+### Backend (Inferido)
+
+* **Java (Quarkus)** para a API REST (conforme `localhost:8080` no `api.ts`)
+* **JPA / Hibernate** para persistência de dados
+* **PostgreSQL** (ou outro banco de dados relacional)
+
+### Infraestrutura & Deploy
+
+* **Vercel / Netlify** (Sugerido para deploy do frontend)
+* **Ambiente de Desenvolvimento:** `localhost:8080` (Backend) e `localhost:5173` (Frontend)
 
 ---
 
-## 🧩 Funcionalidades Principais
-- Formulários acessíveis e validados (React Hook Form).
-- Navegação SPA com rotas estáticas e dinâmicas.
-- Uso de Hooks essenciais: `useState`, `useEffect`, `useNavigate`, `useParams`.
-- Componentes reutilizáveis (cards, botões, passos do tutorial).
-- Indicações visuais e instruções textuais no tutorial para reduzir desistências.
-- Link direto para Play Store e espaço para o vídeo de apresentação.
+## 👥 Integrantes
+
+| Nome | RM |
+| :--- | :--- |
+| Henrique Martins | RM563620 |
+| Henrique Teixeira | RM563088 |
+
+*1TDSPF - Análise e Desenvolvimento de Sistemas*
 
 ---
 
-## 🛠️ Tecnologias
-- **React**  
-- **Vite**  
-- **TypeScript**  
-- **TailwindCSS** 
-- **React Hook Form** 
-- **React Router**
-- **Git / GitHub / GitFlow**
+## 💻 Execução
+
+Para rodar este projeto localmente, você precisará de dois terminais: um para o **Backend (Java/Quarkus)** e um para o **Frontend (React)**.
+
+### Backend (Java/Quarkus)
+
+Presume-se que o backend já esteja clonado e configurado.
+
+1.  Navegue até o diretório raiz do projeto backend.
+2.  Execute o Quarkus em modo de desenvolvimento:
+
+    ```bash
+    ./mvnw quarkus:dev
+    ```
+    *ou (se não usar o wrapper)*
+    ```bash
+    mvn quarkus:dev
+    ```
+3.  O servidor backend deve estar rodando em `http://localhost:8080`.
+
+### Frontend (React)
+
+1.  Clone este repositório:
+    ```bash
+    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
+    ```
+2.  Navegue até o diretório do frontend:
+    ```bash
+    cd seu-repositorio
+    ```
+3.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+4.  Execute o servidor de desenvolvimento (Vite):
+    ```bash
+    npm run dev
+    ```
+5.  Abra `http://localhost:5173` (ou a porta indicada no terminal) no seu navegador.
+
 ---
 
-## 🚀 Como executar (local)
-1. Clonar:
-```bash
-git clone https://github.com/Challenge-2-SEM/frontend-engineering.git
+## ⚠️ Importante: Conexão da API
+
+Por padrão, o frontend está configurado para se comunicar com a API do backend no endereço `http://localhost:8080`.
+
+> Se o seu backend estiver rodando em uma porta ou endereço diferente, você **deve** atualizar o arquivo `src/services/api.ts`:
+
+```typescript
+// src/services/api.ts
+import axios from 'axios';
+const api = axios.create({
+  // ATENÇÃO: Altere esta URL para o endereço do seu backend
+  baseURL: 'http://SEU_BACKEND_AQUI', 
+});
+
+export default api;
 ```
-2. Entrar na pasta do projeto:
-```bash
-cd frontend-engineering
-```
-3. Instalar dependências:
-```bash
-npm install
-```
-4. Rodar em modo de desenvolvimento:
-```bash
-npm run dev
-```
-
-| RM     | Nome              | 
-| ------ | ----------------- | 
-| 563620 | Henrique Martins  | 
-| 563088 | Henrique Teixeira | 
-| 562086 | Henrique Pacheco  | 
 ---
+## 📂 Estrutura de Diretórios (Frontend)
+A estrutura de pastas do projeto React está organizada da seguinte forma, visando a separação de responsabilidades:
+```bash
+seu-repositorio/
+├── public/
+│   └── (ícones, fontes, etc.)
+├── src/
+│   ├── assets/           # Imagens estáticas (logos, etc.)
+│   ├── components/       # Componentes reutilizáveis (ex: Button, Input, Modal)
+│   ├── contexts/         # Contextos globais (ex: AuthContext.tsx)
+│   ├── pages/            # Componentes de página (rotas)
+│   │   ├── Login.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Cadastro.tsx
+│   │   ├── Pacientes.tsx
+│   │   └── (outras páginas: Profissionais, Agendamentos...)
+│   ├── routes/           # (Opcional: Arquivo de configuração de rotas)
+│   ├── services/         # Configuração de APIs (ex: api.ts)
+│   ├── App.tsx           # Componente principal com definição de rotas
+│   ├── index.css         # Estilos globais (Tailwind)
+│   └── main.tsx          # Ponto de entrada da aplicação
+├── .eslintrc.cjs
+├── index.html
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.json
+└── vite.config.ts
+```
 
-## 🔗 Links Importantes  
-- **📁 Repositório GitHub:** [https://github.com/Challenge-2-SEM/frontend-engineering.git](https://github.com/Challenge-2-SEM/frontend-engineering.git)  
-
-
+---
+## 🔗 Links do Projeto (Exemplo)
+🌐 Aplicação Online (Deploy): [Link para o Vercel/Netlify] ▶️ Vídeo no YouTube: [Link para a apresentação do projeto]
