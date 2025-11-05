@@ -2,10 +2,12 @@ import { useState } from 'react'; // Adiciona import
 import { Link } from 'react-router-dom';
 
 export default function Login() {
-  const [email, setEmail] = useState(''); // Adiciona estado
-  const [senha, setSenha] = useState(''); // Adiciona estado
-
-async function handleSubmit(event: FormEvent) {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [error, setError] = useState<string | null>(null); // Adiciona estado
+  const [loading, setLoading] = useState(false); // Adiciona estado
+  
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
   }
   
