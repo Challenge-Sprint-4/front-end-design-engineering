@@ -24,12 +24,12 @@ interface AuthProviderProps {
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-// Cria o provedor
 export function AuthProvider({ children }: AuthProviderProps) {
-
+const [usuario, setUsuario] = useState<Usuario | null>(null);
+const [loading, setLoading] = useState(true); // Começa true
 
 return (
-<AuthContext.Provider value={{}}> {/* Valor vazio por enquanto */}
+<AuthContext.Provider value={{ usuario, loading }}> {/* Passa estados */}
 {children}
 </AuthContext.Provider>
 );
