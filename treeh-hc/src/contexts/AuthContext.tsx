@@ -21,3 +21,16 @@ interface AuthContextData {
 interface AuthProviderProps {
   children: ReactNode;
 }
+
+const AuthContext = createContext<AuthContextData>({} as AuthContextData);
+
+// Cria o provedor
+export function AuthProvider({ children }: AuthProviderProps) {
+
+
+return (
+<AuthContext.Provider value={{}}> {/* Valor vazio por enquanto */}
+{children}
+</AuthContext.Provider>
+);
+}
