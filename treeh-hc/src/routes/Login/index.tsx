@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 export default function Login() {
   const [email, setEmail] = useState(''); // Adiciona estado
   const [senha, setSenha] = useState(''); // Adiciona estado
+
+async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+  }
   
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
