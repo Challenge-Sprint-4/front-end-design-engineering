@@ -16,6 +16,7 @@ import Tutorial from './routes/Tutorial/index.tsx';
 
 // Importar as novas páginas
 import Login from './routes/Login/index.tsx';
+import Cadastro from './routes/Cadastro/index.tsx'; 
 import Dashboard from './routes/Dashboard/index.tsx';
 import Pacientes from './routes/Pacientes/index.tsx';
 import ProtectedRoute from './components/Rotas/ProtectedRoute.tsx'; // Importar Rota Protegida
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
       { path: "/faq", element: <Faq /> },
       { path: "/equipe", element: <Equipe /> },
       { path: "/tutorial", element: <Tutorial /> },
-      { path: "/login", element: <Login /> }, // Página de Login
+      { path: "/login", element: <Login /> }, 
+      { path: "/cadastro", element: <Cadastro /> }, // <-- ADICIONAR ROTA
 
       // Rotas Protegidas (Exigem Login)
       {
@@ -56,6 +58,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    {/* Envolver o RouterProvider com o AuthProvider */}
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>
