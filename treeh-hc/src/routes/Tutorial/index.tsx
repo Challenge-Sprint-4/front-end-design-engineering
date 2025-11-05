@@ -130,7 +130,7 @@ export default function Tutorial() {
               ← Voltar
             </button>
           ) : (
-            <div className="w-[80px] h-10"></div>
+            <div className="w-80px h-10"></div>
           )}
           
           {currentStep < tutorialSteps.length - 1 ? (
@@ -143,7 +143,7 @@ export default function Tutorial() {
             </span>
           )}
 
-          <div className="w-[80px] h-10"></div> 
+          <div className="w-80px h-10"></div> 
         </div>
       </div>
     </main>
