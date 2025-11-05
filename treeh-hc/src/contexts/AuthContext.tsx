@@ -28,17 +28,24 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Tenta carregar dados do usuário do localStorage ao iniciar
-    const storedUser = localStorage.getItem('@AppHC:usuario');
-    if (storedUser) {
-      setUsuario(JSON.parse(storedUser));
+  useEffect(() => { ... }, []);
+
+  async function login(email: string, senha: string) {
+    try {
+      const response = await api.post('/login', { email, senha });
+      const usuarioLogado: Usuario = response.data;
+
+      setUsuario(usuarioLogado);
+      localStorage.setItem('@AppHC:usuario', JSON.stringify(usuarioLogado));
+
+    } catch (error) {
+      console.error("Erro no login:", error);
+      throw new Error("Falha ao fazer login. Verifique suas credenciais.");
     }
-    setLoading(false);
-  }, []);
+  }
 
   return (
-    <AuthContext.Provider value={{ usuario, loading }}>
+    <AuthContext.Provider value={{ usuario, loading, login }}> {/* Add login */}
       {children}
     </AuthContext.Provider>
   );
