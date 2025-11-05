@@ -25,12 +25,21 @@ interface AuthProviderProps {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-const [usuario, setUsuario] = useState<Usuario | null>(null);
-const [loading, setLoading] = useState(true); // Começa true
+  const [usuario, setUsuario] = useState<Usuario | null>(null);
+  const [loading, setLoading] = useState(true);
 
-return (
-<AuthContext.Provider value={{ usuario, loading }}> {/* Passa estados */}
-{children}
-</AuthContext.Provider>
-);
+  useEffect(() => {
+    // Tenta carregar dados do usuário do localStorage ao iniciar
+    const storedUser = localStorage.getItem('@AppHC:usuario');
+    if (storedUser) {
+      setUsuario(JSON.parse(storedUser));
+    }
+    setLoading(false);
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ usuario, loading }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
