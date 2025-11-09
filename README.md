@@ -1,6 +1,6 @@
 # 🏥 Prontuário HC
 
-Plataforma de gestão de saúde (Frontend) desenvolvida para a administração de um hospital ou clínica (HC). O sistema permite o gerenciamento de pacientes, profissionais, agendamentos e consultas, contando com um sistema de autenticação robusto para Pacientes e Profissionais.
+Plataforma de gestão de saúde desenvolvida para o Challenge do Hospital das Clinícas. O sistema permite o gerenciamento de pacientes, profissionais, agendamentos e consultas, contando com um sistema de autenticação robusto para Pacientes e Profissionais.
 
 ---
 
@@ -81,23 +81,6 @@ Presume-se que o backend já esteja clonado e configurado.
 
 ---
 
-## ⚠️ Importante: Conexão da API
-
-Por padrão, o frontend está configurado para se comunicar com a API do backend no endereço `http://localhost:8080`.
-
-> Se o seu backend estiver rodando em uma porta ou endereço diferente, você **deve** atualizar o arquivo `src/services/api.ts`:
-
-```typescript
-// src/services/api.ts
-import axios from 'axios';
-const api = axios.create({
-  // ATENÇÃO: Altere esta URL para o endereço do seu backend
-  baseURL: 'http://SEU_BACKEND_AQUI', 
-});
-
-export default api;
-```
----
 ## 📂 Estrutura de Diretórios (Frontend)
 A estrutura de pastas do projeto React está organizada da seguinte forma, visando a separação de responsabilidades:
 ```bash
@@ -130,4 +113,5 @@ seu-repositorio/
 
 ---
 ## 🔗 Links do Projeto (Exemplo)
-🌐 Aplicação Online (Deploy): [Link para o Vercel/Netlify] ▶️ Vídeo no YouTube: [Link para a apresentação do projeto]
+🌐 Aplicação Online (Deploy): 
+Repositório: https://github.com/Challenge-Sprint-4/front-end-design-engineering.git

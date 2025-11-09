@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../../services/api';
 
-// Interface baseada no seu ProfissionalSaude.java
 interface Profissional {
   idProfissional: number;
   nome: string;
@@ -25,7 +24,6 @@ export default function Profissionais() {
       try {
         setLoading(true);
         setError(null);
-        // Chama o endpoint GET /ProfissionalSaude
         const response = await api.get('/ProfissionalSaude');
         setProfissionais(response.data);
       } catch (err) {

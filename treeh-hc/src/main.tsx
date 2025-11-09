@@ -4,24 +4,18 @@ import App from './App.tsx'
 import './globals.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext.tsx' // Importar o Provider
-
-// Importar as páginas públicas
+import { AuthProvider } from './contexts/AuthContext.tsx' 
 import Home from './routes/Home/index.tsx';
 import Error from './routes/Error/index.tsx';
 import Contato from './routes/Contato/index.tsx';
 import Faq from './routes/Faq/index.tsx';
 import Equipe from './routes/Equipe/index.tsx';
 import Tutorial from './routes/Tutorial/index.tsx';
-
-// Importar as novas páginas
 import Login from './routes/Login/index.tsx';
 import Cadastro from './routes/Cadastro/index.tsx'; 
 import Dashboard from './routes/Dashboard/index.tsx';
 import Pacientes from './routes/Pacientes/index.tsx';
-import ProtectedRoute from './components/Rotas/ProtectedRoute.tsx'; // Importar Rota Protegida
-
-// Importar os novos componentes de funcionalidade
+import ProtectedRoute from './components/Rotas/ProtectedRoute.tsx'; 
 import Profissionais from './routes/Profissionais/index.tsx';
 import Agendamentos from './routes/Agendamentos/index.tsx';
 import Consultas from './routes/Consultas/index.tsx';
@@ -39,11 +33,11 @@ const router = createBrowserRouter([
       { path: "/equipe", element: <Equipe /> },
       { path: "/tutorial", element: <Tutorial /> },
       { path: "/login", element: <Login /> }, 
-      { path: "/cadastro", element: <Cadastro /> }, // <-- ADICIONAR ROTA
+      { path: "/cadastro", element: <Cadastro /> }, 
 
       // Rotas Protegidas (Exigem Login)
       {
-        element: <ProtectedRoute />, // Componente que protege as rotas filhas
+        element: <ProtectedRoute />, 
         children: [
           { path: "/dashboard", element: <Dashboard /> },
           { path: "/pacientes", element: <Pacientes /> },

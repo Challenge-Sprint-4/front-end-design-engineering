@@ -2,14 +2,14 @@ import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 
-// Estado inicial do formulário
+
 const initialState = {
-  // Comum (Usuario)
+  // Usuario
   nome: '',
-  cpf: '', // Será usado como senha no login
+  cpf: '', 
   email: '',
   telefone: '',
-  dataNascimento: '', // Formato YYYY-MM-DD
+  dataNascimento: '', 
   
   // Paciente
   numeroCarteirinha: '',
@@ -49,7 +49,7 @@ export default function Cadastro() {
     setError(null);
     setSuccess(null);
 
-    // 1. Prepara o payload comum
+    // Prepara o payload comum
     const commonPayload = {
       nome: formData.nome,
       cpf: formData.cpf,
@@ -61,7 +61,7 @@ export default function Cadastro() {
 
     try {
       if (tipoUsuario === 'PACIENTE') {
-        // 2. Monta payload do Paciente
+        // Monta payload do Paciente
         const pacientePayload = {
           ...commonPayload,
           numeroCarteirinha: formData.numeroCarteirinha,
@@ -71,11 +71,11 @@ export default function Cadastro() {
           peso: formData.peso,
           altura: formData.altura,
         };
-        // 3. Envia para o endpoint de Paciente
+        // Envia para o endpoint de Paciente
         await api.post('/paciente', pacientePayload);
 
       } else {
-        // 2. Monta payload do Profissional
+        // Monta payload do Profissional
         const profissionalPayload = {
           ...commonPayload,
           crm: formData.crm,
@@ -83,12 +83,12 @@ export default function Cadastro() {
           departamento: formData.departamento,
           horarioAtendimento: formData.horarioAtendimento,
         };
-        // 3. Envia para o endpoint de Profissional
+        // Envia para o endpoint de Profissional
         await api.post('/ProfissionalSaude', profissionalPayload);
       }
 
       setSuccess('Cadastro realizado com sucesso! Você será redirecionado para o login.');
-      setFormData(initialState); // Limpa o formulário
+      setFormData(initialState); 
       
       setTimeout(() => {
         navigate('/login');
@@ -218,7 +218,6 @@ export default function Cadastro() {
   );
 }
 
-// Componente helper para os campos do formulário
 interface CampoProps {
   label: string;
   name: string;

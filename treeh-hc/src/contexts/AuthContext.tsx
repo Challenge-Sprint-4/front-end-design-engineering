@@ -29,11 +29,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Tenta carregar dados do usuário do localStorage ao iniciar
+
     const storedUser = localStorage.getItem('@AppHC:usuario');
     if (storedUser) {
       setUsuario(JSON.parse(storedUser));
-      // Você pode adicionar a lógica do token aqui
     }
     setLoading(false);
   }, []);
@@ -45,9 +44,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       setUsuario(usuarioLogado);
       localStorage.setItem('@AppHC:usuario', JSON.stringify(usuarioLogado));
-      
-      // Configura o token no axios (se você implementar JWT)
-      // api.defaults.headers.Authorization = `Bearer ${token}`;
 
     } catch (error) {
       console.error("Erro no login:", error);
@@ -58,8 +54,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   function logout() {
     setUsuario(null);
     localStorage.removeItem('@AppHC:usuario');
-    // Remove o token do axios
-    // delete api.defaults.headers.Authorization;
   }
 
   return (
@@ -69,7 +63,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   );
 }
 
-// Hook customizado
+// Hook 
 export function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
   if (!context) {

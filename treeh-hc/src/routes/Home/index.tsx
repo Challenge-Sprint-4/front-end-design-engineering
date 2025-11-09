@@ -9,7 +9,7 @@ export default function Home() {
   const [showFaq, setShowFaq] = useState(false);
 
   return (
-    <main className="bg-[#EAEAEA] font-sans min-h-screen overflow-x-hidden"> {/* Adicionado overflow-x-hidden e min-h-screen */}
+    <main className="bg-[#EAEAEA] font-sans min-h-screen overflow-x-hidden">
       <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-16 sm:py-20 md:py-24">
         <div className="max-w-3xl text-left">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 leading-tight">

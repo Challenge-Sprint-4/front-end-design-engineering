@@ -17,10 +17,8 @@ export default function Login() {
     setLoading(true);
 
     try {
-      // Usa o CPF como senha, conforme definido no backend
       await login(email, senha);
       
-      // Redireciona para um dashboard após o login
       navigate('/dashboard'); 
 
     } catch (err) {

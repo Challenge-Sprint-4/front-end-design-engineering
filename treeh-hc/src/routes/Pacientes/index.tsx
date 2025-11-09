@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import api from '../../services/api';
 
-// Interface baseada no seu Paciente.java
 interface Paciente {
   idPaciente: number;
   nome: string;
   cpf: string;
   email: string;
   telefone: string;
-  dataNascimento: string; // LocalDate vem como string
+  dataNascimento: string; 
   numeroCarteirinha: string;
   tipoSanguineo: string;
   alergias: string;
@@ -26,7 +25,6 @@ export default function Pacientes() {
       try {
         setLoading(true);
         setError(null);
-        // Chama o endpoint GET /paciente do seu PacienteResource
         const response = await api.get('/paciente');
         setPacientes(response.data);
       } catch (err) {

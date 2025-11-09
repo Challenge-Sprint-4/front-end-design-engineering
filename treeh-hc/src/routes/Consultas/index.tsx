@@ -1,18 +1,16 @@
 import { useState, useEffect } from 'react';
 import api from '../../services/api';
 
-// Interface baseada no seu Consulta.java
 interface Consulta {
   idConsulta: number;
   idAgendamento: number;
-  dataConsulta: string; // Vem como string ISO (ex: "2025-11-05")
+  dataConsulta: string; 
   diagnostico: string;
   prescricao: string;
   observacoesMedicas: string;
   examesSolicitados: string;
 }
 
-// Helper para formatar a data
 function formatarData(dataString: string) {
   try {
     return new Date(dataString).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
@@ -31,7 +29,6 @@ export default function Consultas() {
       try {
         setLoading(true);
         setError(null);
-        // Chama o endpoint GET /Consulta
         const response = await api.get('/Consulta');
         setConsultas(response.data);
       } catch (err) {

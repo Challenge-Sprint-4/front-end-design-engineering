@@ -1,24 +1,21 @@
 import { useState, useEffect } from 'react';
 import api from '../../services/api';
 
-// Interface baseada no seu Agendamento.java
 interface Agendamento {
   idAgendamento: number;
   idPaciente: number;
   idProfissional: number;
-  dataAgendamento: string; // Vem como string ISO (ex: "2025-11-05")
+  dataAgendamento: string; 
   horaAgendamento: string;
   tipoConsulta: string;
   status: string;
 }
 
-// Helper para formatar a data
 function formatarData(dataString: string) {
   try {
-    // Converte de "2025-11-05" para "05/11/2025"
     return new Date(dataString).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
   } catch (e) {
-    return dataString; // Retorna a string original em caso de erro
+    return dataString; 
   }
 }
 
@@ -32,7 +29,6 @@ export default function Agendamentos() {
       try {
         setLoading(true);
         setError(null);
-        // Chama o endpoint GET /agendamento
         const response = await api.get('/agendamento');
         setAgendamentos(response.data);
       } catch (err) {
@@ -81,7 +77,6 @@ export default function Agendamentos() {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{ag.horaAgendamento}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{ag.tipoConsulta}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    {/* Exemplo de estilização condicional para o status */}
                     <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                       ag.status === 'AGENDADO' ? 'bg-blue-100 text-blue-800' :
                       ag.status === 'REALIZADO' ? 'bg-green-100 text-green-800' :
